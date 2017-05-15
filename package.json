@@ -1,7 +1,7 @@
 {
-  "name": "city-guide",
+  "name": "nazareth-guide",
   "version": "1.0.0",
-  "description": "Our app allows the user to share and gain information about the different events and locations",
+  "description": "",
   "engines": {
     "node": "6.9.2"
   },
@@ -13,10 +13,6 @@
     "dev": "./node_modules/.bin/nodemon app/src/start_server.js",
     "lint": "./node_modules/.bin/eslint './app/**/*.js'"
   },
-  "pre-commit": [
-    "lint",
-    "test"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FACN1/city-guide.git"
