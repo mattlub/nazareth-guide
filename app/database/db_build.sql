@@ -17,6 +17,11 @@ CREATE TABLE nuggets(
 INSERT INTO nuggets
 (lat, long, category, title, description, author)
 VALUES
-(32.699, 35.303, 'food', 'Test title', 'Test description', 'Test author');
+(32.699, 35.303, 'food', 'Test title', 'Test description', 'Test author'),
+(32.709, 35.313, 'fun-fact', 'Test title', 'Test description', 'Test author'),
+(32.719, 35.303, 'history', 'Test title', 'Test description', 'Test author'),
+(32.729, 35.293, 'information', 'Test title', 'Test description', 'Test author'),
+(32.689, 35.323, 'nature', 'Test title', 'Test description', 'Test author'),
+(32.695, 35.313, 'viewpoint', 'Test title', 'Test description', 'Test author');
 
 COMMIT;
