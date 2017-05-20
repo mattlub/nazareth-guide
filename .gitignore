@@ -2,4 +2,4 @@ node_modules/
 coverage/
 config.env
 npm-debug.log
-vibage/
+app/database/nuggets.sql

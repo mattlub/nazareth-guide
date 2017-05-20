@@ -13,6 +13,10 @@
     "dev": "./node_modules/.bin/nodemon app/src/start_server.js",
     "lint": "./node_modules/.bin/eslint './app/**/*.js'"
   },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FACN1/city-guide.git"

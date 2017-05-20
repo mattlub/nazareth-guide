@@ -4,6 +4,18 @@
 
   var TAB_ANIMATION_DURATION = 300
 
+  var state = {
+    hasCreatedLocationMarker: false,
+    // currentView has : map, infoTab
+    currentView: 'map'
+  }
+
+  var userLocationMarker
+  var userLocationRadius
+
+  var smallIconsLayer
+  var bigIconsLayer
+
   // bounds for leaflet in format: [south-west, north-east]
   var nazarethBounds = [
     [32.683154, 35.278158],
@@ -166,35 +178,7 @@
     return L.layerGroup(markers)
   }
 
-  var mymap = L.map('map', {
-    center: [32.699, 35.303],
-    zoomControl: false,
-    attributionControl: false,
-    zoom: 15,
-    maxBounds: nazarethBounds,
-    minZoom: 13
-  })
-
-  L.tileLayer(
-    // 'https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3V1dXVoYSIsImEiOiJjajI2N3QwZm0wMDE1MnFwb3NnYnhwaG55In0.sZgdmc9B4GG9X4Bx5o3NWg',
-    'https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}',
-    {
-      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-      id: 'mapbox.light',
-      accessToken: 'pk.eyJ1Ijoia2FyeXVtIiwiYSI6ImNqMjAzNGU4ZjAxa3EycW4xazFxcHZ6a2QifQ.m_dNO1l1sMkM7r4d5nlRRQ'
-    }).addTo(mymap)
-
   // USER LOCATION
-  // don't really want to set coordinates here and add to map but I think I have to
-  var userLocationMarker
-  var userLocationRadius
-
-  var state = {
-    hasCreatedLocationMarker: false,
-    // currentView has : map, infoTab, formTab, locationSelect
-    currentView: 'map'
-  }
-
   function createLocationMarker (latlng) {
     return L.marker(latlng, {
       icon: L.icon({
@@ -218,14 +202,42 @@
     userLocationRadius.setRadius(radius)
   }
 
-  mymap.on('locationfound', onLocationFound)
+  function displayCorrectIcons (e) {
+    // small icons if zoomed less than level 15, big icons otherwise
+    if (mymap.getZoom() < 17) {
+      smallIconsLayer.addTo(mymap)
+      bigIconsLayer.removeFrom(mymap)
+    } else {
+      smallIconsLayer.removeFrom(mymap)
+      bigIconsLayer.addTo(mymap)
+    }
+  }
+
+  // INITIALISE MAP
+  var mymap = L.map('map', {
+    center: [32.699, 35.303],
+    zoomControl: false,
+    attributionControl: false,
+    zoom: 15,
+    maxBounds: nazarethBounds,
+    minZoom: 13
+  })
+
+  L.tileLayer(
+    // 'https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3V1dXVoYSIsImEiOiJjajI2N3QwZm0wMDE1MnFwb3NnYnhwaG55In0.sZgdmc9B4GG9X4Bx5o3NWg',
+    'https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}',
+    {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      id: 'mapbox.light',
+      accessToken: 'pk.eyJ1Ijoia2FyeXVtIiwiYSI6ImNqMjAzNGU4ZjAxa3EycW4xazFxcHZ6a2QifQ.m_dNO1l1sMkM7r4d5nlRRQ'
+    }).addTo(mymap)
+
   // center on the user's location on initial load
-  mymap.locate({setView: true})
+  mymap.on('locationfound', onLocationFound)
+  // on zoomend is good but not perfect, because can zoom multiple levels before this function will re-run
+  mymap.on('zoomend', displayCorrectIcons)
 
-  // these variables are undefined until the db results come back
-  var smallIconsLayer
-  var bigIconsLayer
-
+  // get nuggets and locate user
   makeRequest('GET', '/all-nuggets', null, function (err, nuggets) {
     if (err) {
       // need to improve this
@@ -235,21 +247,9 @@
     smallIconsLayer.addTo(mymap)
     bigIconsLayer = createIconsLayer(nuggets, bigIconsMap)
   })
+  mymap.locate({setView: true})
 
-  var displayCorrectIcons = function (e) {
-    // small icons if zoomed less than level 15, big icons otherwise
-    if (mymap.getZoom() < 15) {
-      smallIconsLayer.addTo(mymap)
-      bigIconsLayer.removeFrom(mymap)
-    } else {
-      smallIconsLayer.removeFrom(mymap)
-      bigIconsLayer.addTo(mymap)
-    }
-  }
-
-  // on zoomend is good but not perfect, because can zoom multiple levels before this function will re-run
-  mymap.on('zoomend', displayCorrectIcons)
-
+  // add listeners to buttons
   var centerButton = document.querySelector('.center-button')
   centerButton.addEventListener('click', function (e) {
     // probably want some indication that it's trying to locate in here, because it does take time.
