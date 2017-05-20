@@ -121,8 +121,30 @@ html, body {
   top: 20%;
   left: 0%;
   z-index: 10;
+}
 
-  border-top: 0.4em solid rgb(255, 178, 53);
+.info-tab-food {
+  border-top: 0.4em solid var(--orange);
+}
+
+.info-tab-fun-fact {
+  border-top: 0.4em solid var(--yellow);
+}
+
+.info-tab-history {
+  border-top: 0.4em solid var(--purple);
+}
+
+.info-tab-information {
+  border-top: 0.4em solid var(--pink);
+}
+
+.info-tab-nature {
+  border-top: 0.4em solid var(--green);
+}
+
+.info-tab-viewpoint {
+  border-top: 0.4em solid var(--blue);
 }
 
 .nugget-title {
