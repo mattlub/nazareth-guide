@@ -7,14 +7,16 @@ CREATE TABLE nuggets(
   lat DOUBLE PRECISION NOT NULL,
   long DOUBLE PRECISION NOT NULL,
   category VARCHAR(30) NOT NULL,
-  title VARCHAR(50) NOT NULL,
+  title VARCHAR(100) NOT NULL,
   description TEXT,
   img_url VARCHAR(300),
-  author VARCHAR(30) NOT NULL,
-  creation_timestamp timestamp default current_timestamp
+  author VARCHAR(100) NOT NULL,
+  created timestamp default current_timestamp
 );
 
-INSERT INTO nuggets (lat, long, category, title, description, img_url, author)
-VALUES (32.699, 35.303, 'food', 'Al Waked', 'A great shwarma place and a great cheeky shwarma', null, 'Elias');
+INSERT INTO nuggets
+(lat, long, category, title, description, author)
+VALUES
+(32.699, 35.303, 'food', 'Test title', 'Test description', 'Test author');
 
 COMMIT;
