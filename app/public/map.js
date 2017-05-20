@@ -15,7 +15,7 @@
       iconUrl: './assets/icons/food.png',
       iconSize: [24, 24]
     }),
-    'fun fact': L.icon({
+    'fun-fact': L.icon({
       iconUrl: './assets/icons/fun-fact.png',
       iconSize: [24, 24]
     }),
@@ -42,7 +42,7 @@
       iconUrl: './assets/icons-small/food-small.png',
       iconSize: [8, 8]
     }),
-    'fun fact': L.icon({
+    'fun-fact': L.icon({
       iconUrl: './assets/icons-small/fun-fact-small.png',
       iconSize: [8, 8]
     }),
@@ -96,7 +96,7 @@
 
   function createNuggetInfoTab (info) {
     var nuggetInfoTab = document.createElement('div')
-    nuggetInfoTab.setAttribute('class', 'slide-up-tab nugget-info-tab')
+    nuggetInfoTab.setAttribute('class', 'slide-up-tab nugget-info-tab info-tab-' + info.category)
 
     var xButton = document.createElement('i')
     xButton.setAttribute('class', 'slide-up-tab-x-button fa fa-times')
