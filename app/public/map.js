@@ -124,7 +124,8 @@
 
     var description = document.createElement('p')
     description.setAttribute('class', 'nugget-description')
-    description.textContent = info.description
+    // changed this to innerHTML from textContent, which allows html tags to be rendered. This is only ok because there is no user-submitted content, otherwise this would be a vulnerability.
+    description.innerHTML = info.description
     nuggetInfoTab.appendChild(description)
 
     return nuggetInfoTab
