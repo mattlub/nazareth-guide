@@ -105,7 +105,7 @@ html, body {
 }
 
 .slide-up-tab-x-button {
-  position: fixed;
+  position: absolute;
   right: 0.5em;
   top: 0.2em;
 }
