@@ -4,8 +4,6 @@ CONTENTS:
 2) HEADER
 3) SLIDE-UP-TAB
 4) NUGGET-INFO
-5) ADD-FORM
-6) LOCATION-SELECT
 */
 
 :root {
@@ -14,7 +12,15 @@ CONTENTS:
   --header-font: 'Patua One' cursive;
   --tick-button-colour: green;
   --cross-button-colour: red;
-  --blue-button-colour: blue
+  --blue-button-colour: blue;
+
+  /*logo colours*/
+  --green: #C4D600;
+  --yellow: #FFE639;
+  --blue: #26C1D4;
+  --purple: #A30081;
+  --pink: #FB3A76;
+  --orange: #FE9300;
 }
 
 /*
@@ -115,8 +121,30 @@ html, body {
   top: 20%;
   left: 0%;
   z-index: 10;
+}
 
-  border-top: 0.4em solid rgb(255, 178, 53);
+.info-tab-food {
+  border-top: 0.4em solid var(--orange);
+}
+
+.info-tab-fun-fact {
+  border-top: 0.4em solid var(--yellow);
+}
+
+.info-tab-history {
+  border-top: 0.4em solid var(--purple);
+}
+
+.info-tab-information {
+  border-top: 0.4em solid var(--pink);
+}
+
+.info-tab-nature {
+  border-top: 0.4em solid var(--green);
+}
+
+.info-tab-viewpoint {
+  border-top: 0.4em solid var(--blue);
 }
 
 .nugget-title {
@@ -134,148 +162,4 @@ html, body {
   max-height: 12em;
   margin-top: 0.3em;
   border-radius: 0.3em;
-}
-
-/*
-5) ADD-FORM
-*/
-
-.location-select {
-    z-index: 1000;
-}
-
-.add-nugget-tab {
-  top: 100%;
-  left: 0%;
-  z-index: 1000;
-  position: absolute;
-  background: rgba(212, 255, 176, 0.9);
-  height: 90%;
-  border-top: 8px solid #c3c3c3;
-  transition: all 0.4s ease;
-  overflow: scroll;
-}
-
-
-.add-nugget-tab.visible {
-  top: 10%;
-}
-
-.add-nugget-tab.not-visible {
-  top: 100%;
-}
-
-.add-form-input {
-  margin: auto;
-  display: block;
-  padding: 0.5rem;
-  border-radius: 8px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 1em;
-  border: none;
-}
-
-.add-form-category-input {
-  height: 3em;
-}
-
-.description-text-area{
-  width: 100%;
-}
-
-.add-form-buttons {
-  margin-bottom: 1.5em;
-  height: 3em;
-}
-
-.add-form-check {
-  position: absolute;
-  color: green;
-  transform: translateX(-50%);
-  background: radial-gradient(circle, white 55%, transparent 45%);
-  left: 42%;
-}
-
-.add-form-times {
-  position: absolute;
-  color: red;
-  transform: translateX(-50%);
-  background: radial-gradient(circle, white 55%, transparent 45%);
-  left: 58%;
-}
-
-.formPara {
-  font-size: 1.2em;
-  font-weight:bold;
-  margin-bottom: 0.4em;
-}
-
-/*
-6) LOCATION-SELECT
-*/
-.location-select-display {
-  display: none;
-  z-index: 100;
-  /* to allow map events to happen 'under' this screen */
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle,
-    transparent 33%,
-    rgba(0, 0, 0, 0.4) 39%
-    );
-}
-
-.location-select-display.visible {
-  display: block;
-}
-
-.location-select-pin {
-  position: absolute;
-  /*height: 4em;
-  width: 4em;*/
-  left: 50%;
-  top: 50%;
-  animation: single-bounce 0.4s alternate infinite;
-  transform: translate(-50%, -100%);
-}
-
-.location-select-tick {
-  pointer-events: initial;
-  position: absolute;
-  left: 50%;  /*left: 10%;*/
-  top: 75%;
-  transform: translateX(-50%);
-  color: var(--tick-button-colour);
-  background: radial-gradient(circle, white 55%, transparent 45%);
-}
-
-.location-select-cross {
-  pointer-events: initial;
-  position: absolute;
-  left: 50%;
-  top: 90%; /*top: 75%;*/
-  transform: translateX(-50%);
-  color: var(--cross-button-colour);
-  background: radial-gradient(circle, white 55%, transparent 45%);
-}
-
-@keyframes single-bounce {
-  0%   { transform: translate(-50%, -100%) }
-  100%   { transform: translate(-50%, -120%) }
-}
-
-@keyframes bounce {
-  0%   { transform: translate(-50%, -100%) }
-  4%   { transform: translate(-50%, -120%) }
-  8%   { transform: translate(-50%, -100%) }
-  12%   { transform: translate(-50%, -120%) }
-  16%   { transform: translate(-50%, -100%) }
-  20%   { transform: translate(-50%, -120%) }
-  24% { transform: translate(-50%, -100%) }
 }
