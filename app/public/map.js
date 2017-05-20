@@ -185,23 +185,35 @@
 
   // USER LOCATION
   // don't really want to set coordinates here and add to map but I think I have to
-  var userLocationMarker = L.marker([0, 0], {
-    icon: L.icon({
-      iconUrl: './assets/user-location-icon.png',
-      iconSize: [12, 12]
-    })
-  }).addTo(mymap)
-  var userLocationRadius = L.circle([0, 0], 1).addTo(mymap)
+  var userLocationMarker
+  var userLocationRadius
+
   var state = {
-    isWatchingUser: false,
+    hasCreatedLocationMarker: false,
     // currentView has : map, infoTab, formTab, locationSelect
     currentView: 'map'
   }
 
+  function createLocationMarker (latlng) {
+    return L.marker(latlng, {
+      icon: L.icon({
+        iconUrl: './assets/user-location-icon.png',
+        iconSize: [12, 12]
+      })
+    })
+  }
+
   function onLocationFound (e) {
     var radius = e.accuracy / 2
-    userLocationMarker.setLatLng(e.latlng)
-    userLocationRadius.setLatLng(e.latlng)
+    var location = e.latlng
+    // creates location marker and radius if hasn't already
+    if (!state.hasCreatedLocationMarker) {
+      userLocationMarker = createLocationMarker(location).addTo(mymap)
+      userLocationRadius = L.circle(location, radius).addTo(mymap)
+      state.hasCreatedLocationMarker = true
+    }
+    userLocationMarker.setLatLng(location)
+    userLocationRadius.setLatLng(location)
     userLocationRadius.setRadius(radius)
   }
 
@@ -239,13 +251,7 @@
 
   var centerButton = document.querySelector('.center-button')
   centerButton.addEventListener('click', function (e) {
-    if (state.isWatchingUser) {
-      mymap.stopLocate()
-      centerButton.classList.remove('blue')
-    } else {
-      centerButton.classList.add('blue')
-      mymap.locate({setView: true, watch: true})
-    }
-    state.isWatchingUser = !state.isWatchingUser
+    // probably want some indication that it's trying to locate in here, because it does take time.
+    mymap.locate({setView: true})
   })
 })()
