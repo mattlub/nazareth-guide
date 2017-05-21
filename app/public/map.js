@@ -178,7 +178,7 @@
 
   function displayCorrectIcons (e) {
     // small icons if zoomed less than level 15, big icons otherwise
-    if (mymap.getZoom() < 17) {
+    if (mymap.getZoom() < 15) {
       smallIconsLayer.addTo(mymap)
       bigIconsLayer.removeFrom(mymap)
     } else {
