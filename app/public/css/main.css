@@ -14,13 +14,25 @@ CONTENTS:
   --cross-button-colour: red;
   --blue-button-colour: blue;
 
-  /*logo colours*/
+  /*
+  old logo colours
   --green: #C4D600;
   --yellow: #FFE639;
   --blue: #26C1D4;
   --purple: #A30081;
   --pink: #FB3A76;
   --orange: #FE9300;
+  */
+
+  --red: #f6412d;
+  --purple: #9c1cb1;
+  --indigo: #3e4eb7;
+  --blue: #1193f5;
+  --green: #48af4b;
+  --light-green: #88c441;
+  --orange: #ff9800;
+  --yellow: #ffec19;
+  --brown: #795547;
 }
 
 /*
@@ -64,6 +76,7 @@ html, body {
 }
 
 .app-title {
+  color: white;
   text-align: center;
   margin: 0%;
   transform: translateY(30%);
@@ -127,16 +140,16 @@ html, body {
   border-top: 0.4em solid var(--orange);
 }
 
-.info-tab-fun-fact {
-  border-top: 0.4em solid var(--yellow);
+.info-tab-guesthouse {
+  border-top: 0.4em solid var(--light-green);
 }
 
 .info-tab-history {
-  border-top: 0.4em solid var(--purple);
+  border-top: 0.4em solid var(--indigo);
 }
 
 .info-tab-information {
-  border-top: 0.4em solid var(--pink);
+  border-top: 0.4em solid var(--red);
 }
 
 .info-tab-nature {
@@ -145,6 +158,18 @@ html, body {
 
 .info-tab-viewpoint {
   border-top: 0.4em solid var(--blue);
+}
+
+.info-tab-parking {
+  border-top: 0.4em solid var(--purple);
+}
+
+.info-tab-shopping {
+  border-top: 0.4em solid var(--yellow);
+}
+
+.info-tab-cafe {
+  border-top: 0.4em solid var(--brown);
 }
 
 .nugget-title {
