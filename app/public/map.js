@@ -10,71 +10,45 @@
     currentView: 'map'
   }
 
-  var userLocationMarker
-  var userLocationRadius
-
-  var smallIconsLayer
-  var bigIconsLayer
-
   // bounds for leaflet in format: [south-west, north-east]
   var nazarethBounds = [
     [32.683154, 35.278158],
     [32.723174, 35.341721]
   ]
 
-  var bigIconsMap = {
-    food: L.icon({
-      iconUrl: './assets/icons/food.png',
-      iconSize: [24, 24]
-    }),
-    'fun-fact': L.icon({
-      iconUrl: './assets/icons/fun-fact.png',
-      iconSize: [24, 24]
-    }),
-    history: L.icon({
-      iconUrl: './assets/icons/history.png',
-      iconSize: [24, 24]
-    }),
-    information: L.icon({
-      iconUrl: './assets/icons/information.png',
-      iconSize: [24, 24]
-    }),
-    nature: L.icon({
-      iconUrl: './assets/icons/nature.png',
-      iconSize: [24, 24]
-    }),
-    viewpoint: L.icon({
-      iconUrl: './assets/icons/viewpoint.png',
-      iconSize: [24, 24]
-    })
-  }
+  var categories = [
+    'cafe',
+    'food',
+    'guesthouse',
+    'history',
+    'information',
+    'nature',
+    'parking',
+    'shopping',
+    'viewpoint'
+  ]
 
-  var smallIconsMap = {
-    food: L.icon({
-      iconUrl: './assets/icons-small/food-small.png',
-      iconSize: [8, 8]
-    }),
-    'fun-fact': L.icon({
-      iconUrl: './assets/icons-small/fun-fact-small.png',
-      iconSize: [8, 8]
-    }),
-    history: L.icon({
-      iconUrl: './assets/icons-small/history-small.png',
-      iconSize: [8, 8]
-    }),
-    information: L.icon({
-      iconUrl: './assets/icons-small/information-small.png',
-      iconSize: [8, 8]
-    }),
-    nature: L.icon({
-      iconUrl: './assets/icons-small/nature-small.png',
-      iconSize: [8, 8]
-    }),
-    viewpoint: L.icon({
-      iconUrl: './assets/icons-small/viewpoint-small.png',
+  var userLocationMarker
+  var userLocationRadius
+
+  // icons map are used to create icons for markers
+  var bigIconsMap = {}
+  var smallIconsMap = {}
+
+  var bigIconsLayer, smallIconsLayer
+
+  categories.forEach(function (category) {
+    var bigIconPath = './assets/icons/' + category + '.png'
+    var smallIconPath = './assets/icons-small/' + category + '-small.png'
+    bigIconsMap[category] = L.icon({
+      iconUrl: bigIconPath,
+      iconSize: [24, 24]
+    })
+    smallIconsMap[category] = L.icon({
+      iconUrl: smallIconPath,
       iconSize: [8, 8]
     })
-  }
+  })
 
   function makeRequest (method, url, data, callback) {
     var xhr = new XMLHttpRequest()
