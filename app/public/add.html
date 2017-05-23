@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Naz Guide</title>
+    <script src="https://use.fontawesome.com/c487c1de1c.js"></script>
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/normalize.min.css">
+    <link rel="stylesheet" href="./css/add.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+   integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+   crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700|Lato|Patua+One" rel="stylesheet">
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <h1 class="app-title">Naz Guide</h1>
+      <i class="fa fa-plus add-nugget-button fa-lg"></i>
+    </header>
+
+    <!-- MAP -->
+    <div id="map"></div>
+    <i class="center-button fa fa-3x fa-crosshairs" aria-hidden="true"></i>
+
+    <!-- LOCATION-SELECT -->
+    <div class="location-select-display">
+      <img class="location-select-pin" src="./assets/pin.png" alt="">
+      <i class="fa fa-check-circle fa-5x location-select-tick"></i>
+      <i class="fa fa-times-circle fa-3x location-select-cross"></i>
+    </div>
+
+    <!-- FORM -->
+    <div class="slide-up-tab add-nugget-tab">
+      <form class="add-nugget-form">
+        <input class="add-form-input" type="number" value="" name="lat">
+        <input class="add-form-input" type="number" value="" name="long">
+        <p class="formPara">Title: </p>
+        <input type="text" name="title" class="add-form-input">
+        <p class="formPara">Category: </p>
+        <select name="category" class="add-form-category-input add-form-input">
+          <option value="cafe">Cafe</option>
+          <option value="food">Food</option>
+          <option value="guesthouse">Guesthouse</option>
+          <option value="viewpoint">Viewpoint</option>
+          <option value="history">History</option>
+          <option value="parking">Parking</option>
+          <option value="nature">Nature</option>
+          <option value="information">Information</option>
+          <option value="shopping">Shopping</option>
+        </select>
+        <p class="formPara">Description: </p>
+        <textarea class="description-text-area add-form-input" rows="8" cols="80" name="description"></textarea>
+        <p class="formPara">Your name: </p>
+        <input type="text" name="author" class="add-form-input">
+        <p class="err-message"></p>
+        <div class="add-form-buttons">
+          <i class="fa fa-check-circle fa-3x add-form-check" aria-hidden="true"></i>
+          <i class="fa fa-times-circle fa-3x add-form-times" aria-hidden="true"></i>
+        </div>
+      </form>
+    </div>
+
+    <!-- JAVASCRIPTS -->
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+   integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+   crossorigin=""></script>
+   <script type="text/javascript" src="./map_add.js"></script>
+  </body>
+
+
+</html>
